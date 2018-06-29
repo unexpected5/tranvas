@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Event\Event;
 
 class User extends Authenticatable
 {
@@ -14,16 +15,26 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable =
+    [
         'name', 'email', 'password',
     ];
+
+
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
+    protected $hidden =
+    [
         'password', 'remember_token',
     ];
+
+    public function events()
+    {
+
+      return $this->hasMany(Event::class);
+    }
 }
